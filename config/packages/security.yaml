@@ -1,0 +1,38 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        login:
+            pattern: ^/wp-json/login_check
+            stateless: true
+            json_login:
+                check_path: /wp-json/login_check
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        api:
+            pattern: ^/wp-json
+            stateless: true
+            jwt: ~
+
+    access_control:
+        - { path: ^/wp-json/login_check, roles: PUBLIC_ACCESS }
+        - { path: ^/wp-json/wc/v3, roles: ROLE_ADMIN, methods: ['GET', 'POST', 'PUT', 'DELETE'] }
+
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4
+                time_cost: 3
+                memory_cost: 10

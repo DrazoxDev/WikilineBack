@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/jplayer.css') }}"/>
+{% endblock %}
+{% block body %}
+				<header id="header" class="col-full">
+					<div id="logo">
+						<h1 class="site-title">Site web marchand</h1>
+					</div>
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
+							<span>Menu</span>
+						</button>
+						<div class="menu">
+							<ul class="nav-menu">
+								<li class="page_item page-item-1 current_page_item focus">
+									<a href="afficheRecherche">Rechercher
+										un article</a>
+								</li>
+								<li class="page_item page-item-2">
+									<a href="accederAuPanier">Panier</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</header>
+				<div id="content" class="site-content" tabindex="-1">
+					<div class="col-full">
+						<div id="primary">
+							<main id="main" class="site-main" role="main">
+								<header class="woocommerce-products-header">
+									<h1 class="woocommerce-products-header__title page-title">Résultats de la recherche</h1>
+								</header>
+								<ul class="products">
+									{% for article in articles %}
+												{% if loop.index0 is divisible by(3) %}
+									<li class="product type-product first">
+										{% else %}
+											{% if loop.index is divisible by(3) %}
+									<li class="product type-product last">
+											{% else %}
+									<li class="product type-product">
+											{% endif %}
+										{% endif %}
+									<a class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+										href="ajouterLigne?id={{ article.id }}"> <img
+											src="{{ asset(article.image) }}"
+											class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="poster_2_up"
+											/>
+											<h3>{{ article.titre }}</h3> <span class="price"><ins>
+													<span class="amount">{{ article.prix }} €</span>
+												</ins></span>
+
+									</a> <a
+										href="ajouterLigne?id={{ article.id }}"
+										class="button product_type_simple add_to_cart_button">Mettre
+											dans le panier</a>
+											{% if article.pistes is defined %}
+												{% if article.pistes|length > 0 %}
+										<div id="jplayer_{{ article.id }}" class="jp-jplayer" data-idArticle="{{ article.id }}"  data-pistes="{{ article.pistes|json_encode() }}">
+										  <audio id="audio"></audio>
+										  <button class="prev-jplayer" id="prev"></button>
+										  <button class="play-jplayer" id="play"></button>
+										  <button class="next-jplayer" id="next"></button>
+										  <ul id="playlist"></ul>
+										</div>
+												{% endif %}
+											{% endif %}
+									</li>
+									{% endfor %}
+								</ul>
+							</main>
+						</div>
+					</div><!-- .col-full -->
+				</div><!-- #content -->
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript" src="{{ asset('js/jplayer.js') }}"></script>
+{% endblock %}

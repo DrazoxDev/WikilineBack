@@ -1,0 +1,2 @@
+DirectoryIndex index.php index.html
+FallbackResource /tpv43_api_reactjs/public/index.php

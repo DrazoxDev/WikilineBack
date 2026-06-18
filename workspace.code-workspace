@@ -1,0 +1,14 @@
+{ 																				
+	"folders": [																	
+		{										        							
+			"path": "."																
+	    }								                							
+	],                                                  							
+	"settings": {	                                    							
+	    "intelephense.environment.includePaths": [	    							
+	      	"C:\\Users\\i2400606\\symfony\\vendor"       							
+	    ],                                       	    							
+	    "php.workspace.includePath": "C:\\Users\\i2400606\\symfony\\vendor",			
+	    "php.suggest.basic": false,                     							
+	}            	                                    							
+}	            	                                    							

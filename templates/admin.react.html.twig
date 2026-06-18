@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+{{ vite_entry_script_tags('app', { dependency: 'react' })}}
+{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" id="load-style-css" href="{{ asset('css/wordpress/wp-admin/load-styles.css') }}" type="text/css" />
+{% endblock %}
+{% block body %}
+    <div id="wpbody-content">
+        <div class="wrap">
+            <h1 class="wp-heading-inline">Administration du site web marchand</h1>
+            <div id="root"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+
+
