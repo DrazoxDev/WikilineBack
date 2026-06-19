@@ -16,5 +16,5 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
     Pentatrion\ViteBundle\PentatrionViteBundle::class => ['all' => true],
-	Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
+    Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
 ];

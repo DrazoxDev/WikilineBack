@@ -1,9 +1,16 @@
 nelmio_cors:
     defaults:
         origin_regex: true
-        allow_origin: ['http://localhost:3000']   # ton port React
-        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
         allow_headers: ['Content-Type', 'Authorization']
         max_age: 3600
     paths:
-        '^/wp-json': ~
+        '^/api/':
+            allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+            allow_headers: ['Content-Type', 'Authorization']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
+        '^/wp-json/':
+            allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+            allow_headers: ['Content-Type', 'Authorization']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']

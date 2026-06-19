@@ -19,6 +19,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $pseudo = null;
+
     /**
      * @var list<string> The user roles
      */
@@ -44,6 +47,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

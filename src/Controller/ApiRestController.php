@@ -43,23 +43,6 @@ class ApiRestController extends AbstractController
 		$this->logger = $logger;
 	}
 	
-	#[Route('/wp-json/login_check', name: 'login', methods: ['POST'])]
-	public function loginAction(Request $request, AuthenticationUtils $authenticationUtils,
-		UserProviderInterface $userProvider, JWTTokenManagerInterface $jwtManager) {
-		$data = json_decode($request->getContent(), true);
-		$email = $data['email'] ?? null;
-		$password = $data['password'] ?? null;
-		// Vérifier les informations d'identification de l'utilisateur
-		$user = $userProvider->loadUserByIdentifier($email);
-		if (!$user || !password_verify($password, $user->getPassword())) {
-		return new JsonResponse(['error' => 'Invalid credentials'], 401);
-		}
-		// Générer le token JWT
-		$token = $jwtManager->create($user);
-		$response = new JsonResponse(['token' => $token]);
-		return $response ;
-	}
-	
     #[Route('/wp-json/wc/v3/products', name: 'list-all-products', methods: ['GET'])]
     public function listAllProducts(): Response
     {
